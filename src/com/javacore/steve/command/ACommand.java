@@ -9,4 +9,5 @@ public abstract class ACommand {
     public void execute() {
         System.out.println("Command " + name + " not supported!");
     }
+
 }
