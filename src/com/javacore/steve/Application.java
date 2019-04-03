@@ -9,7 +9,9 @@ public class Application {
     static public final String VERSION = "1.0";
 
     public static void main(String[] args) {
-        ACommand command = new ACommand("awd") {};
+        ACommand command = new ACommand("awd") {
+        System
+        };
         System.out.println("Hello, my name is " + APP_NAME);
         System.out.println("My author is " + AUTHOR);
         String commandName = "version";
