@@ -1,29 +1,50 @@
 package com.javacore.steve;
 
-import com.javacore.steve.command.ACommand;
-import com.javacore.steve.command.CommandRegistry;
-import com.javacore.steve.command.Tinterface;
-import com.javacore.steve.profile.ProfileController;
-import com.javacore.steve.profile.ProfileModel;
-import com.javacore.steve.profile.ProfileView;
+import com.javacore.steve.db.Record;
+import com.javacore.steve.db.Table;
 import com.javacore.steve.state.ApplicationState;
-import com.javacore.steve.state.StateIdle;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.sql.SQLOutput;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Application {
     static public final String APP_NAME = "Steve";
     static public final String AUTHOR = "Author";
     static public final String VERSION = "1.0";
 
-    static ApplicationState cuurrentState;
+    static ApplicationState currentState;
 
-    public static void main(String[] args) throws IOException {
-        ProfileController profileController = new ProfileController();
-        profileController.showProfile(5);
+    public static void main(String[] args) {
+
+        List<String> columns = new ArrayList<>();
+        columns.add("id");
+        columns.add("firstName");
+        columns.add("lastName");
+        Table criminalTable = new Table("Criminals", columns);
+        List<String> values = new ArrayList<>();
+        values.add("1");
+        values.add("Ivan");
+        values.add("Ivanov");
+        List<String> values1 = new ArrayList<>();
+        values1.add("2");
+        values1.add("Petr");
+        values1.add("Petrov");
+        criminalTable.insert(new Record(values));
+        criminalTable.insert(new Record(values1));
+
+        List<String> result = criminalTable.selectField("firstName");
+        System.out.println(result.toString());
+
+//Рисование круга и квадртаа в консоли
+//        ConsoleCanvas consoleCanvas = new ConsoleCanvas(15,15);
+//        consoleCanvas.drawSquareAt(0,0,2);
+//        consoleCanvas.drawCircleAt(6,6,5);
+//        consoleCanvas.draw();
+
+
+//MVC
+//        ProfileController profileController = new ProfileController();
+//        profileController.showProfile(5);
 
 //State Pattern
 //        changeState(new StateIdle(), "idle");
@@ -77,10 +98,10 @@ public class Application {
     }
 
     public static void changeState(ApplicationState newState, String commandName) {
-        if (cuurrentState != null) {
-            cuurrentState.exit();
+        if (currentState != null) {
+            currentState.exit();
         }
-        cuurrentState = newState;
+        currentState = newState;
         newState.enter(commandName);
     }
 
