@@ -2,26 +2,33 @@ package com.javacore.steve.profile;
 
 import com.javacore.steve.common.BaseModel;
 
+import java.util.Date;
+
 public class ProfileModel extends BaseModel {
 
     private int id;
     private String firstName;
     private String lastName;
-    private boolean active;
+    private String nickName;
+    private int numberOfCrimes;
+    private Date dateOfBirth;
+    private boolean deceased;
+    private String description;
+    private String placeOfBirth;
+    private Date getDateOfDeath;
+    private String placeOfDeath;
 
     public static ProfileModel randomModel() {
         int rId = (int)(10*Math.random());
-        boolean rActive = (rId % 2 == 0);
         String rFirstName = "Steve_" + rId;
         String rLastName = "Balmor_" + rId;
-        return new ProfileModel(rId, rFirstName, rLastName, rActive);
+        return new ProfileModel(rId, rFirstName, rLastName);
     }
 
-    public ProfileModel(int id, String firstName, String lastName, boolean active) {
+    public ProfileModel(int id, String firstName, String lastName) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
-        this.active = active;
     }
 
     public String getName() {
@@ -40,10 +47,6 @@ public class ProfileModel extends BaseModel {
         return lastName;
     }
 
-    public boolean isActive() {
-        return active;
-    }
-
     public void setId(int id) {
         this.id = id;
     }
@@ -54,10 +57,6 @@ public class ProfileModel extends BaseModel {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
-    }
-
-    public void setActive(boolean active) {
-        this.active = active;
     }
 
 }

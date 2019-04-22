@@ -92,28 +92,35 @@ public class ConsoleCanvas extends Canvas {
 
     public void drawCircleAt(int x, int y, int radius) {
         reset();
-        int arr_x_down = x;
-        int arr_y_down = y;
-        int arr_x_up = x;
-        int arr_y_up = y;
-        int first = 0;
-        int last = radius;
-        for (int i = 0; i <= radius/2; i++) {
-            for (int j = first; j < last; j++) {
-                pixels[arr_x_down][arr_y_down] = '#';
-                arr_y_down++;
+
+        for (int i = x - radius; i < x + radius; i++) {
+            for (int j = y - radius; j < y + radius; j++) {
+                if (Math.pow(i-x,2) + Math.pow(j-y,2) < radius*radius) setSymbolAt(i,j,'#');
             }
-            for (int j = first; j < last; j++) {
-                pixels[arr_x_up][arr_y_up] = '#';
-                arr_y_up++;
-            }
-            arr_y_down = y + i + 1;
-            arr_y_up = y + i + 1;
-            first++;
-            last--;
-            arr_x_down++;
-            arr_x_up--;
         }
+
+//        int arr_x_down = x;
+//        int arr_y_down = y;
+//        int arr_x_up = x;
+//        int arr_y_up = y;
+//        int first = 0;
+//        int last = radius;
+//        for (int i = 0; i <= radius/2; i++) {
+//            for (int j = first; j < last; j++) {
+//                pixels[arr_x_down][arr_y_down] = '#';
+//                arr_y_down++;
+//            }
+//            for (int j = first; j < last; j++) {
+//                pixels[arr_x_up][arr_y_up] = '#';
+//                arr_y_up++;
+//            }
+//            arr_y_down = y + i + 1;
+//            arr_y_up = y + i + 1;
+//            first++;
+//            last--;
+//            arr_x_down++;
+//            arr_x_up--;
+//        }
     }
 
     public void drawStringAt() {

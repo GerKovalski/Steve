@@ -1,6 +1,7 @@
 package com.javacore.steve.db;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
@@ -41,5 +42,10 @@ public class Table {
     public Table(String tableName, List<String> columns) {
         this.tableName = tableName;
         this.columns = columns;
+    }
+
+    public List<String> getColumns() {
+
+        return columns;
     }
 }
